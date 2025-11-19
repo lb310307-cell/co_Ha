@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>20/11 for Miss.Ha</title>
+  <style>
+
+ #musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffbfd4;
+    border: none;
+    padding: 15px;
+    font-size: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+
+  #musicBtn:hover {
+    background: #ff8fb3;
+  }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://khoinguonsangtao.vn/wp-content/uploads/2022/10/hinh-anh-20-11.jpeg');
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
+    .popup, .loading-container, .password-container, #notebookCover, .photo-book {
+      border-radius: 15px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #ff5e78;
+      box-shadow: 0 0 10px rgba(255, 94, 120, 0.5);
+      width: 320px;
+      padding: 30px;
+      display: none;
+    }
+    .popup img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .popup h2, .popup p {
+      margin: 10px 0;
+    }
+    .popup button {
+      padding: 10px 20px;
+      background-color: #ff6666;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .popup button:hover { background-color: #e05555; }
+    .password-container img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .password-container input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ff9999;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .password-container button {
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      background-color: #ff6666;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .password-container button:hover { background-color: #e05555; }
+    #passwordMessage {
+      color: #ff5e78;
+      margin-top: 10px;
+      min-height: 20px;
+    }
+    .loading-container { color: #ff5e78; }
+    .loading-bar {
+      width: 100%;
+      height: 30px;
+      background-color: #fff;
+      border: 2px solid #ff5e78;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px auto 0;
+    }
+    .loading-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #ff5e78;
+      transition: width 0.3s;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      line-height: 30px;
+      user-select: none;
+    }
+    #notebookCover {
+      display: none;
+      cursor: pointer;
+      width: 320px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 94, 120, 0.6);
+      user-select: none;
+      margin: 0 auto;
+    }
+    #notebookCover:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+    .photo-book {
+      width: 340px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(255, 94, 120, 0.5);
+      text-align: center;
+      user-select: none;
+      margin: 0 auto;
+    }
+    .photo-book img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    .caption {
+      font-size: 14px;
+      color: #ff5e78;
+      margin-bottom: 20px;
+      line-height: 1.3;
+      white-space: pre-wrap;
+      min-height: 75px;
+    }
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+    button.nav-btn {
+      padding: 10px 20px;
+      background-color: #ff6666;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    button.nav-btn:hover:not(:disabled) { background-color: #e05555; }
+    button.nav-btn:disabled {
+      background-color: #ffb0b0;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+   <button id="musicBtn" onclick="toggleMusic()">🔊</button>
+
+    <audio id="bgm" loop >
+  <source src="c:\Users\user\OneDrive\Documents\20.11\nhac.mp4" type="audio/mp4">
+</audio>
+
+  <!-- Popup đầu tiên -->
+  <div class="popup" id="popup">
+    <img src="https://tse4.mm.bing.net/th/id/OIP.Jt-B-Kv1mH2H5gI49TittgHaGT?pid=Api&P=0&h=180" alt="Cute cat" />
+    <h2>From CNTT02 ˚ ༘♡ ⋆｡˚  </h2>
+    <p>Hộp Quà Bí Mật 💌 (^-^) Lớp Tặng Cô💖. </p>
+    <button onclick="showPasswordBox()">Click )</button>
+  </div>
+
+  <!-- Giao diện nhập mật khẩu -->
+  <div class="password-container" id="passwordBox">
+    <img src="https://png.pngtree.com/png-clipart/20220116/original/pngtree-original-cute-cartoon-teacher-hand-painted-deduction-free-element-material-in-png-image_7113172.png"alt="Enter:  20/11  („• ֊ •„) " />
+    <p>Password</p>
+    <input type="password" id="passwordInput" placeholder="Nhập mật khẩu" />
+    <button onclick="checkPassword()">Click </button>
+    <p id="passwordMessage"></p>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-container" id="loading">
+    <h3>LOADIN G✏️. . .</h3>
+    <div class="loading-bar">
+      <div class="loading-fill" id="fill">0%</div>
+    </div>
+  </div>
+
+  <!-- Bìa sổ -->
+  <img src="c:\Users\user\OneDrive\Documents\20.11\Ha.png" alt="Bìa sổ" id="notebookCover" />
+
+  <!-- Cuốn sổ ảnh -->
+  <div class="photo-book" id="photoBook">
+    <img id="photo" src="" alt="Photo" />
+    <div class="caption" id="caption"></div>
+    <div class="nav-buttons">
+      <button class="nav-btn" id="prevBtn">Trc</button>
+      <button class="nav-btn" id="nextBtn">Sau→</button>
+    </div>
+  </div>
+
+  <script>
+
+
+
+
+function toggleMusic() {
+  const audio = document.getElementById("bgm");
+  const btn = document.getElementById("musicBtn");
+
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = "🔊🎵"; // Đang phát
+  } else {
+    audio.pause();
+    btn.textContent = "🔈🎵"; // Đã tắt
+  }
+}
+
+
+
+
+    window.onload = () => {
+      document.getElementById("popup").style.display = "block";
+    };
+
+    function showPasswordBox() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("passwordBox").style.display = "block";
+      document.getElementById("passwordInput").value = "";
+      document.getElementById("passwordMessage").textContent = "";
+      document.getElementById("passwordInput").focus();
+    }
+
+    function checkPassword() {
+      const password = document.getElementById("passwordInput").value.trim();
+      const message = document.getElementById("passwordMessage");
+
+      if (password === "20/11") {
+        message.style.color = "#99cc99";
+        message.textContent = "password: chính xác, chuẩn bị vào HÉ HÉ :)))";
+        document.getElementById("passwordBox").style.display = "none";
+        startLoading();
+      } else {
+        message.style.color = "#ff5e78";
+        message.textContent = "password: sai rồi, nhập lại nha :)))";
+      }
+    }
+
+    function startLoading() {
+      const loading = document.getElementById("loading");
+      loading.style.display = "block";
+
+      let fill = document.getElementById("fill");
+      let percent = 0;
+
+      let interval = setInterval(() => {
+        if (percent <= 100) {
+          fill.style.width = percent + "%";
+          fill.innerText = percent + "%";
+          percent++;
+        } else {
+          clearInterval(interval);
+          loading.style.display = "none";
+          showNotebookCover();
+        }
+      }, 30);
+    }
+
+    // Hiện bìa sổ
+    function showNotebookCover() {
+      const cover = document.getElementById("notebookCover");
+      cover.style.display = "block";
+    }
+
+    // Dữ liệu ảnh và ghi chú trong cuốn sổ
+    const photos = [
+      {
+        src: "https://tse2.mm.bing.net/th/id/OIP.jK7yiLk11e-Y3kWpslNO_QHaHa?pid=Api&P=0&h=180",
+        caption: `Nhân ngày Nhà giáo 👩‍🏫🏫Việt Nam 20/11.
+
+`
+      },
+      {
+        src: "https://tse2.mm.bing.net/th/id/OIP.Y9MaxiVxV-8HnzG7MuNC3wHaE8?pid=Api&P=0&h=180",
+        caption: `Tập thể lớp CNTT02-k20 xin chúc cô ༶🌼༶༶🌸༶༶🌼༶ !!!`
+      },
+      {
+        src: "https://tse4.mm.bing.net/th/id/OIP.89UTY6ugSfaZ91PFy04fRQHaHa?pid=Api&P=0&h=180",
+        caption: `Luôn mạnh khỏe 🌹 chúc cô có thật nhiều niềm vui,hạnh phúc 💖 và bình an.`
+      },
+    
+       { src: "https://tse3.mm.bing.net/th/id/OIP.a0rwtoZUlP-5fblGov7UlwHaFj?pid=Api&P=0&h=180",
+        caption: `Chúng em cảm ơn cô vì đã dành trọn tâm huyết ✏️ của mình trong từng bài giảng 📚 tận tâm, ân cần và yêu thương cho học trò.💕`
+      },
+      { src: "https://tse4.mm.bing.net/th/id/OIP.JzQtIWKZPxI2xooR9IfSCgHaFj?pid=Api&P=0&h=180",
+        caption: `Lớp em quý cô lắm. Sợ kết thúc học phần,chúng em kh được gặp cô nữa. Nhưng chúng em kh muốn học lại đâuuuuu.........Huhuhu   :>>> `
+      },
+       { src: "https://tse4.mm.bing.net/th/id/OIP.x3hfarxRI7Owe65Y8xBq5QHaEK?pid=Api&P=0&h=180",
+        caption: `Cuối cùng, chúng em chúc cô luôn vững bước trên hành trình truyền tải tri thức, chắp cánh ước mơ cho thế hệ mai sau 💖(^_−)☆.`
+      },
+    ];
+    let currentIndex = 0;
+    const photoBook = document.getElementById("photoBook");
+    const photo = document.getElementById("photo");
+    const caption = document.getElementById("caption");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const notebookCover = document.getElementById("notebookCover");
+
+    // Cập nhật ảnh và caption theo currentIndex
+    function updatePhoto() {
+      photo.src = photos[currentIndex].src;
+      caption.textContent = photos[currentIndex].caption;
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === photos.length - 1;
+    }
+
+    // Nút trước
+    prevBtn.onclick = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updatePhoto();
+      }
+    };
+
+    // Nút sau
+    nextBtn.onclick = () => {
+      if (currentIndex < photos.length - 1) {
+        currentIndex++;
+        updatePhoto();
+      }
+    };
+
+    // Click vào bìa sổ để mở cuốn sổ ảnh
+    notebookCover.onclick = () => {
+      notebookCover.style.display = "none";
+      photoBook.style.display = "block";
+      currentIndex = 0;
+      updatePhoto();
+    };
+  </script>
+
+</body>
+</html>
